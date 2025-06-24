@@ -10,6 +10,10 @@ let gameState = {
   deathInterval: null,
   waitingForResponse: false,
   animationFrameId: null,
+  isMutated: false, // tracks if duck has started mutating
+  hasBeenRedeemed: false, // tracks if player punched after mutation
+  storyChoicesMade: 0, // tracks how many story-focused choices player made
+  exploredLore: false, // tracks if player learned the full story
 };
 
 // DOM Elements
@@ -31,6 +35,52 @@ const elements = {
   endTitle: document.getElementById("endTitle"),
   endMessage: document.getElementById("endMessage"),
 };
+
+// Helper function to get pet response based on pet count
+function getPetResponse(petCount) {
+  for (let responseGroup of PET_RESPONSES) {
+    if (
+      petCount >= responseGroup.petRange[0] &&
+      petCount <= responseGroup.petRange[1]
+    ) {
+      const randomResponse =
+        responseGroup.responses[
+          Math.floor(Math.random() * responseGroup.responses.length)
+        ];
+      return {
+        text: randomResponse,
+        sprite: responseGroup.duckSprite,
+        image: responseGroup.duckImage,
+      };
+    }
+  }
+
+  // Fallback for counts beyond defined ranges
+  const lastGroup = PET_RESPONSES[PET_RESPONSES.length - 1];
+  const randomResponse =
+    lastGroup.responses[Math.floor(Math.random() * lastGroup.responses.length)];
+  return {
+    text: randomResponse,
+    sprite: lastGroup.duckSprite,
+    image: lastGroup.duckImage,
+  };
+}
+
+// Helper function to update duck appearance
+function updateDuckAppearance(sprite, imagePath = null) {
+  if (imagePath) {
+    // Use image if provided
+    elements.duck.style.backgroundImage = `url(${imagePath})`;
+    elements.duck.style.backgroundSize = "contain";
+    elements.duck.style.backgroundRepeat = "no-repeat";
+    elements.duck.style.backgroundPosition = "center";
+    elements.duck.textContent = ""; // Hide emoji when using image
+  } else {
+    // Use emoji sprite
+    elements.duck.style.backgroundImage = "none";
+    elements.duck.textContent = sprite;
+  }
+}
 
 // Audio system with different voices
 function playAudio(text, speaker = "microphone") {
@@ -59,9 +109,16 @@ function playAudio(text, speaker = "microphone") {
         break;
 
       case "duck":
-        utterance.rate = 1.1;
-        utterance.pitch = 1.8;
-        utterance.volume = 0.9;
+        // Adjust duck voice based on mutation state
+        if (gameState.petCount >= GAME_CONFIG.mutationStartPet) {
+          utterance.rate = 0.8; // Slower, more menacing
+          utterance.pitch = 0.6; // Deeper, more evil
+          utterance.volume = 1.0; // Louder
+        } else {
+          utterance.rate = 1.1;
+          utterance.pitch = 1.8;
+          utterance.volume = 0.9;
+        }
         break;
 
       case "player":
@@ -236,13 +293,25 @@ function showDialogue(text, type = "duck", choices = null) {
 function handleChoice(result) {
   elements.dialogue.style.display = "none";
 
+  // Track story choices
+  if (result.story) {
+    gameState.storyChoicesMade++;
+    if (gameState.storyChoicesMade >= 3) {
+      gameState.exploredLore = true;
+    }
+  }
+
   if (result.cured) {
-    gameState.cured += result.cured;
+    // Ensure we never cure more than the living population
+    const maxCurable =
+      GAME_CONFIG.totalPopulation - gameState.deaths - gameState.cured;
+    const actualCured = Math.min(result.cured, maxCurable);
+    gameState.cured += actualCured;
     updateProgressBar();
   }
 
-  if (result.duckSprite) {
-    elements.duck.textContent = result.duckSprite;
+  if (result.duckSprite || result.duckImage) {
+    updateDuckAppearance(result.duckSprite, result.duckImage);
   }
 
   if (result.duckSays) {
@@ -256,6 +325,28 @@ function handleChoice(result) {
 }
 
 function processPunch() {
+  // Check if this is a redemption punch (duck has mutated but hasn't been redeemed)
+  if (gameState.isMutated && !gameState.hasBeenRedeemed) {
+    gameState.hasBeenRedeemed = true;
+
+    // Show redemption dialogue and update appearance
+    updateDuckAppearance(
+      REDEMPTION_DIALOGUE.duckSprite,
+      REDEMPTION_DIALOGUE.duckImage
+    );
+    showDialogue(REDEMPTION_DIALOGUE.duckSays, "duck");
+
+    // Reset mutation state
+    gameState.isMutated = false;
+
+    // After redemption dialogue, show follow-up
+    setTimeout(() => {
+      showDialogue(REDEMPTION_DIALOGUE.followUp, "duck");
+    }, 5000);
+
+    return;
+  }
+
   if (
     gameState.waitingForResponse ||
     gameState.punchIndex >= PUNCH_SEQUENCE.length
@@ -270,13 +361,17 @@ function processPunch() {
 
   // Handle curing
   if (sequence.cured) {
-    gameState.cured += sequence.cured;
+    // Ensure we never cure more than the living population
+    const maxCurable =
+      GAME_CONFIG.totalPopulation - gameState.deaths - gameState.cured;
+    const actualCured = Math.min(sequence.cured, maxCurable);
+    gameState.cured += actualCured;
     updateProgressBar();
   }
 
-  // Handle sprite change
-  if (sequence.duckSprite) {
-    elements.duck.textContent = sequence.duckSprite;
+  // Handle sprite/image change
+  if (sequence.duckSprite || sequence.duckImage) {
+    updateDuckAppearance(sequence.duckSprite, sequence.duckImage);
   }
 
   // Handle dialogue or choices
@@ -305,26 +400,47 @@ function processPunch() {
 function processPet() {
   gameState.petCount++;
 
-  // Duck quack animation
+  // Get response for current pet count
+  const response = getPetResponse(gameState.petCount);
+
+  // Update duck appearance (sprite or image)
+  updateDuckAppearance(response.sprite, response.image);
+
+  // Check if duck has started mutating
+  if (
+    gameState.petCount >= GAME_CONFIG.mutationStartPet &&
+    !gameState.isMutated
+  ) {
+    gameState.isMutated = true;
+    // Add visual mutation effects
+    elements.duck.classList.add("mutating");
+  }
+
+  // Duck animation
   elements.duck.style.transform = "scale(1.2)";
   setTimeout(() => {
     elements.duck.style.transform = "scale(1)";
   }, 200);
 
-  // Show hearts every 5th pet
-  if (gameState.petCount % GAME_CONFIG.heartThreshold === 0) {
+  // Show duck response
+  showDialogue(response.text, "duck");
+
+  // Show hearts every 5th pet (but less frequently as duck mutates)
+  const heartFrequency = gameState.isMutated ? 10 : GAME_CONFIG.heartThreshold;
+  if (gameState.petCount % heartFrequency === 0) {
     const hearts = document.createElement("div");
     hearts.className = "hearts";
-    hearts.textContent = "💕";
+    // Change heart type based on mutation state
+    hearts.textContent = gameState.isMutated ? "💀" : "💕";
     elements.duckContainer.style.position = "relative";
     elements.duckContainer.appendChild(hearts);
 
     setTimeout(() => hearts.remove(), 1000);
   }
 
-  // Check for passive ending
+  // Check for passive ending (unchanged)
   if (gameState.petCount >= GAME_CONFIG.petThreshold) {
-    elements.duck.textContent = "👹"; // Monster duck
+    updateDuckAppearance("👹"); // Monster duck - no image override for final form
     elements.duck.classList.add("monster");
 
     setTimeout(() => {
@@ -362,22 +478,35 @@ function endGame(type) {
   switch (type) {
     case "victory-passive":
       elements.endScreen.className = "end-screen victory fade-in";
-      elements.endTitle.textContent = "Passive Ending";
-      elements.endMessage.textContent = `You saved ${remaining.toLocaleString()} people and the world thanks you for your kindness.`;
+      elements.endTitle.textContent = "Passive Ending - The Kindness Trap";
+      elements.endMessage.textContent = `You saved ${remaining.toLocaleString()} people, but awakened something terrible through kindness. The duck revealed its true nature as Project Leviathan, yet chose to spare humanity in recognition of your compassion. A pyrrhic victory.`;
       break;
 
     case "victory-violent":
       elements.endScreen.className = "end-screen victory fade-in";
-      elements.endTitle.textContent = "Violent Ending";
-      elements.endMessage.textContent = `You saved ${gameState.cured.toLocaleString()} people and the world thanks you for your determination.`;
+      if (gameState.exploredLore) {
+        elements.endTitle.textContent = STORY_ENDING.title;
+        elements.endMessage.textContent = `${
+          STORY_ENDING.message
+        } You cured ${gameState.cured.toLocaleString()} people and learned that sometimes the greatest weapons can become the greatest healers through understanding and choice.`;
+      } else {
+        elements.endTitle.textContent = "Violent Ending - Necessary Force";
+        elements.endMessage.textContent = `You saved ${gameState.cured.toLocaleString()} people through decisive action. The duck was transformed from weapon to healer, though you may wonder what deeper truths you missed by focusing only on results.`;
+      }
       break;
 
     case "game-over":
       elements.endScreen.className = "end-screen game-over fade-in";
-      elements.endTitle.textContent = "Game Over";
+      elements.endTitle.textContent = "Extinction Event";
       elements.endMessage.textContent =
-        "All of humanity has perished. The cure was never found.";
+        "All of humanity has perished. The bioweapon completed its original programming. Sometimes even the best intentions cannot overcome inaction.";
       break;
+  }
+
+  // Add replay hint for story seekers
+  if (!gameState.exploredLore && type === "victory-violent") {
+    elements.endMessage.textContent +=
+      "\n\nHint: Try playing again and asking the duck more questions to uncover the full story of Project Leviathan.";
   }
 
   elements.endScreen.style.display = "block";
@@ -391,7 +520,7 @@ elements.headline.onclick = () => {
   // Speaker animation and audio
   elements.speaker.classList.add("wiggle");
   const microphoneText =
-    "We have found it - a way to cure the illness. You are the only one who can do it, the only one with the will power to do what must be done. You must.... punch that duck.";
+    "Emergency Protocol 7-Alpha activated. We've located the source - Project Leviathan, designation 'Duck'. Our scientists believe controlled trauma may reverse its bioweapon protocols. You have been selected for psychological compatibility. You must... punch that duck. Time is running out.";
   playAudio(microphoneText, "microphone");
 
   setTimeout(() => {
@@ -407,8 +536,10 @@ elements.headline.onclick = () => {
 elements.petBtn.onclick = processPet;
 
 elements.punchBtn.onclick = () => {
-  // Hide pet button after first punch
-  elements.petBtn.style.display = "none";
+  // Hide pet button after first punch (unless it's a redemption punch)
+  if (!gameState.isMutated) {
+    elements.petBtn.style.display = "none";
+  }
   processPunch();
 };
 
