@@ -2,12 +2,14 @@
 let gameState = {
   phase: "intro", // intro, playing, ended
   deaths: GAME_CONFIG.initialDeaths,
+  displayedDeaths: GAME_CONFIG.initialDeaths,
   cured: 0,
   petCount: 0,
   punchIndex: 0,
   gameStartTime: null,
   deathInterval: null,
   waitingForResponse: false,
+  animationFrameId: null,
 };
 
 // DOM Elements
@@ -30,22 +32,91 @@ const elements = {
   endMessage: document.getElementById("endMessage"),
 };
 
-// Audio simulation (you can replace with actual audio)
-function playAudio(text) {
-  console.log("Audio:", text);
-  // You could use Web Speech API here: speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+// Audio system with different voices
+function playAudio(text, speaker = "microphone") {
+  if ("speechSynthesis" in window) {
+    // Cancel any ongoing speech
+    speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    // Configure voice based on speaker
+    switch (speaker) {
+      case "microphone":
+        utterance.rate = 0.9;
+        utterance.pitch = 1.2;
+        utterance.volume = 0.8;
+        // Try to find a female voice
+        const voices = speechSynthesis.getVoices();
+        const femaleVoice = voices.find(
+          (voice) =>
+            voice.name.toLowerCase().includes("female") ||
+            voice.name.toLowerCase().includes("woman") ||
+            voice.name.toLowerCase().includes("samantha") ||
+            voice.name.toLowerCase().includes("karen")
+        );
+        if (femaleVoice) utterance.voice = femaleVoice;
+        break;
+
+      case "duck":
+        utterance.rate = 1.1;
+        utterance.pitch = 1.8;
+        utterance.volume = 0.9;
+        break;
+
+      case "player":
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        utterance.volume = 0.8;
+        break;
+    }
+
+    speechSynthesis.speak(utterance);
+  } else {
+    console.log(`${speaker.toUpperCase()} Audio:`, text);
+  }
+}
+
+// Smooth counter animation
+function animateCounter(targetValue, currentValue, callback) {
+  const difference = targetValue - currentValue;
+  const increment = difference * 0.1;
+
+  if (Math.abs(difference) < 1) {
+    callback(Math.round(targetValue));
+    return;
+  }
+
+  const newValue = currentValue + increment;
+  callback(Math.round(newValue));
+
+  gameState.animationFrameId = requestAnimationFrame(() =>
+    animateCounter(targetValue, newValue, callback)
+  );
 }
 
 function updateProgressBar() {
   const totalAlive = GAME_CONFIG.totalPopulation - gameState.deaths;
   const deathPercentage =
-    (gameState.deaths / GAME_CONFIG.totalPopulation) * 100;
+    (gameState.displayedDeaths / GAME_CONFIG.totalPopulation) * 100;
   const curedPercentage = (gameState.cured / GAME_CONFIG.totalPopulation) * 100;
 
-  elements.progressDeath.style.width = `${Math.max(0, 100 - curedPercentage)}%`;
-  elements.progressCured.style.width = `${Math.min(100, curedPercentage)}%`;
+  // Update progress bar visually
+  // Red represents alive but not cured, Blue represents cured, Black represents dead
+  const alivePercentage = Math.max(0, 100 - deathPercentage - curedPercentage);
 
-  elements.deathCount.textContent = `Deaths: ${gameState.deaths.toLocaleString()}`;
+  elements.progressDeath.style.width = `${alivePercentage}%`;
+  elements.progressCured.style.width = `${curedPercentage}%`;
+
+  // Animate death counter
+  animateCounter(
+    gameState.deaths,
+    gameState.displayedDeaths,
+    (displayValue) => {
+      gameState.displayedDeaths = displayValue;
+      elements.deathCount.textContent = `Deaths: ${displayValue.toLocaleString()}`;
+    }
+  );
 
   if (gameState.cured > 0) {
     elements.curedCount.style.display = "block";
@@ -78,7 +149,7 @@ function startDeathTimer() {
     if (gameState.phase !== "playing") return;
 
     const deathRate = calculateDeathRate();
-    gameState.deaths += deathRate;
+    gameState.deaths = Math.round(gameState.deaths + deathRate);
 
     updateProgressBar();
 
@@ -94,14 +165,49 @@ function startDeathTimer() {
 }
 
 function showDialogue(text, type = "duck", choices = null) {
-  elements.dialogue.textContent = text;
-  elements.dialogue.className = `dialogue ${
-    type === "duck" ? "duck-speak" : "player-speak"
-  } fade-in`;
-  elements.dialogue.style.display = "block";
+  // Create or update dialogue element
+  let dialogueEl = elements.dialogue;
+
+  // Position dialogue based on speaker
+  if (type === "duck") {
+    dialogueEl.className = "dialogue duck-speak fade-in";
+    dialogueEl.style.position = "absolute";
+    dialogueEl.style.left = "20px";
+    dialogueEl.style.right = "auto";
+    dialogueEl.style.maxWidth = "300px";
+    dialogueEl.style.top = "50%";
+    dialogueEl.style.transform = "translateY(-50%)";
+  } else if (type === "player") {
+    dialogueEl.className = "dialogue player-speak fade-in";
+    dialogueEl.style.position = "absolute";
+    dialogueEl.style.right = "20px";
+    dialogueEl.style.left = "auto";
+    dialogueEl.style.maxWidth = "300px";
+    dialogueEl.style.top = "50%";
+    dialogueEl.style.transform = "translateY(-50%)";
+  } else {
+    // Default positioning for other types (like microphone)
+    dialogueEl.className = "dialogue fade-in";
+    dialogueEl.style.position = "relative";
+    dialogueEl.style.left = "auto";
+    dialogueEl.style.right = "auto";
+    dialogueEl.style.maxWidth = "90%";
+    dialogueEl.style.transform = "none";
+    dialogueEl.style.top = "auto";
+  }
+
+  dialogueEl.textContent = text;
+  dialogueEl.style.display = "block";
+
+  // Play audio
+  if (type === "duck") {
+    playAudio(text, "duck");
+  } else if (type === "player") {
+    playAudio(text, "player");
+  }
 
   // Clear any existing choice buttons
-  const existingChoices = elements.dialogue.querySelector(".choice-buttons");
+  const existingChoices = dialogueEl.querySelector(".choice-buttons");
   if (existingChoices) existingChoices.remove();
 
   if (choices) {
@@ -116,14 +222,14 @@ function showDialogue(text, type = "duck", choices = null) {
       choiceContainer.appendChild(btn);
     });
 
-    elements.dialogue.appendChild(choiceContainer);
+    dialogueEl.appendChild(choiceContainer);
   } else {
-    // Auto-hide dialogue after 3 seconds if no choices
+    // Auto-hide dialogue after 4 seconds if no choices (longer for audio)
     setTimeout(() => {
-      elements.dialogue.style.display = "none";
+      dialogueEl.style.display = "none";
       gameState.waitingForResponse = false;
       elements.punchBtn.disabled = false;
-    }, 3000);
+    }, 4000);
   }
 }
 
@@ -238,7 +344,15 @@ function processPet() {
 
 function endGame(type) {
   clearInterval(gameState.deathInterval);
+  if (gameState.animationFrameId) {
+    cancelAnimationFrame(gameState.animationFrameId);
+  }
   gameState.phase = "ended";
+
+  // Stop any ongoing speech
+  if ("speechSynthesis" in window) {
+    speechSynthesis.cancel();
+  }
 
   elements.actionButtons.style.display = "none";
   elements.dialogue.style.display = "none";
@@ -276,9 +390,9 @@ elements.headline.onclick = () => {
 
   // Speaker animation and audio
   elements.speaker.classList.add("wiggle");
-  playAudio(
-    "We have found it - a way to cure the illness. You are the only one who can do it, the only one with the will power to do what must be done. You must.... punch that duck."
-  );
+  const microphoneText =
+    "We have found it - a way to cure the illness. You are the only one who can do it, the only one with the will power to do what must be done. You must.... punch that duck.";
+  playAudio(microphoneText, "microphone");
 
   setTimeout(() => {
     elements.speaker.classList.add("broken");

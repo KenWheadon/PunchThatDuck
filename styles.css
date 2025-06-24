@@ -126,22 +126,26 @@ body {
 .progress-bar {
   width: 100%;
   height: 30px;
-  background: #333;
+  background: #000; /* Black background represents deaths */
   border-radius: 15px;
   overflow: hidden;
   position: relative;
+  border: 2px solid #666;
 }
 
 .progress-death {
   height: 100%;
-  background: #ff4444;
+  background: #ff4444; /* Red represents alive but not cured */
   width: 100%;
   transition: width 0.3s ease;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .progress-cured {
   height: 100%;
-  background: #4444ff;
+  background: #4444ff; /* Blue represents cured */
   width: 0%;
   position: absolute;
   right: 0;
@@ -207,20 +211,34 @@ body {
 
 .dialogue {
   background: rgba(0, 0, 0, 0.9);
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px;
+  padding: 15px 20px;
+  border-radius: 15px;
+  margin: 10px;
   text-align: center;
   max-width: 90%;
   display: none;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .dialogue.duck-speak {
   border: 3px solid #ffdd44;
+  background: rgba(255, 221, 68, 0.1);
+}
+
+.dialogue.duck-speak::before {
+  content: "🦆 ";
+  font-size: 16px;
 }
 
 .dialogue.player-speak {
   border: 3px solid #4444ff;
+  background: rgba(68, 68, 255, 0.1);
+}
+
+.dialogue.player-speak::before {
+  content: "🧑 ";
+  font-size: 16px;
 }
 
 .choice-buttons {
