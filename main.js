@@ -82,6 +82,27 @@ function updateDuckAppearance(sprite, imagePath = null) {
   }
 }
 
+// Duck animation functions
+function animateDuckBob() {
+  elements.duck.classList.remove("bob", "shake"); // Clear any existing animations
+  elements.duck.classList.add("bob");
+
+  // Remove the class after animation completes
+  setTimeout(() => {
+    elements.duck.classList.remove("bob");
+  }, 600);
+}
+
+function animateDuckShake() {
+  elements.duck.classList.remove("bob", "shake"); // Clear any existing animations
+  elements.duck.classList.add("shake");
+
+  // Remove the class after animation completes
+  setTimeout(() => {
+    elements.duck.classList.remove("shake");
+  }, 500);
+}
+
 // Audio system with different voices
 function playAudio(text, speaker = "microphone") {
   if ("speechSynthesis" in window) {
@@ -325,6 +346,9 @@ function handleChoice(result) {
 }
 
 function processPunch() {
+  // Animate duck shake
+  animateDuckShake();
+
   // Check if this is a redemption punch (duck has mutated but hasn't been redeemed)
   if (gameState.isMutated && !gameState.hasBeenRedeemed) {
     gameState.hasBeenRedeemed = true;
@@ -400,6 +424,9 @@ function processPunch() {
 function processPet() {
   gameState.petCount++;
 
+  // Animate duck bob
+  animateDuckBob();
+
   // Get response for current pet count
   const response = getPetResponse(gameState.petCount);
 
@@ -415,12 +442,6 @@ function processPet() {
     // Add visual mutation effects
     elements.duck.classList.add("mutating");
   }
-
-  // Duck animation
-  elements.duck.style.transform = "scale(1.2)";
-  setTimeout(() => {
-    elements.duck.style.transform = "scale(1)";
-  }, 200);
 
   // Show duck response
   showDialogue(response.text, "duck");
@@ -440,7 +461,7 @@ function processPet() {
 
   // Check for passive ending (unchanged)
   if (gameState.petCount >= GAME_CONFIG.petThreshold) {
-    updateDuckAppearance("👹"); // Monster duck - no image override for final form
+    updateDuckAppearance("👹", "images/pet_13_full_monster.png"); // Monster duck
     elements.duck.classList.add("monster");
 
     setTimeout(() => {
@@ -479,7 +500,7 @@ function endGame(type) {
     case "victory-passive":
       elements.endScreen.className = "end-screen victory fade-in";
       elements.endTitle.textContent = "Passive Ending - The Kindness Trap";
-      elements.endMessage.textContent = `You saved ${remaining.toLocaleString()} people, but awakened something terrible through kindness. The duck revealed its true nature as Project Leviathan, yet chose to spare humanity in recognition of your compassion. A pyrrhic victory.`;
+      elements.endMessage.textContent = `You saved ${remaining.toLocaleString()} people, but awakened something terrible through kindness. The duck revealed its true nature as Project Leviathan, yet chose to spare humanity in recognition of your compassion. A pyrrhic victory in a military blacksite where the greatest weapons are born.`;
       break;
 
     case "victory-violent":
@@ -488,10 +509,10 @@ function endGame(type) {
         elements.endTitle.textContent = STORY_ENDING.title;
         elements.endMessage.textContent = `${
           STORY_ENDING.message
-        } You cured ${gameState.cured.toLocaleString()} people and learned that sometimes the greatest weapons can become the greatest healers through understanding and choice.`;
+        } You cured ${gameState.cured.toLocaleString()} people and witnessed that even in the darkest military facilities, redemption is possible through understanding and sacrifice.`;
       } else {
         elements.endTitle.textContent = "Violent Ending - Necessary Force";
-        elements.endMessage.textContent = `You saved ${gameState.cured.toLocaleString()} people through decisive action. The duck was transformed from weapon to healer, though you may wonder what deeper truths you missed by focusing only on results.`;
+        elements.endMessage.textContent = `You saved ${gameState.cured.toLocaleString()} people through decisive action in this military blacksite. The duck was transformed from weapon to healer through violence, though you may wonder what deeper truths you missed by focusing only on results.`;
       }
       break;
 
@@ -499,14 +520,14 @@ function endGame(type) {
       elements.endScreen.className = "end-screen game-over fade-in";
       elements.endTitle.textContent = "Extinction Event";
       elements.endMessage.textContent =
-        "All of humanity has perished. The bioweapon completed its original programming. Sometimes even the best intentions cannot overcome inaction.";
+        "All of humanity has perished. The bioweapon completed its original programming in this dark facility. Sometimes even the best intentions cannot overcome inaction in the face of military-grade threats.";
       break;
   }
 
   // Add replay hint for story seekers
   if (!gameState.exploredLore && type === "victory-violent") {
     elements.endMessage.textContent +=
-      "\n\nHint: Try playing again and asking the duck more questions to uncover the full story of Project Leviathan.";
+      "\n\nHint: Try playing again and asking the duck more questions to uncover the full story of Project Leviathan and what really happens in military blacksites.";
   }
 
   elements.endScreen.style.display = "block";
@@ -520,7 +541,7 @@ elements.headline.onclick = () => {
   // Speaker animation and audio
   elements.speaker.classList.add("wiggle");
   const microphoneText =
-    "Emergency Protocol 7-Alpha activated. We've located the source - Project Leviathan, designation 'Duck'. Our scientists believe controlled trauma may reverse its bioweapon protocols. You have been selected for psychological compatibility. You must... punch that duck. Time is running out.";
+    "Emergency Protocol 7-Alpha activated. We've located the source in this military blacksite - Project Leviathan, designation 'Duck'. Our scientists believe controlled trauma may reverse its bioweapon protocols. You have been selected for psychological compatibility. You must... punch that duck. Time is running out.";
   playAudio(microphoneText, "microphone");
 
   setTimeout(() => {

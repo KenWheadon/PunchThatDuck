@@ -11,97 +11,126 @@ const GAME_CONFIG = {
   fullMutationPet: 20, // when duck is fully mutated
 };
 
-// Pet responses with mutation progression
+// Pet responses with mutation progression - purposeful dialogue for each pet
 const PET_RESPONSES = [
-  // Normal pets (0-5)
+  // Pet 1 - Slightly larger duck
   {
     petRange: [1, 1],
     duckSprite: "🦆",
+    duckImage: "images/pet1.png",
     responses: [
-      "Quack! That feels nice... I remember warmth like this from before.",
-      "Oh, a gentle human touch... it's been so long.",
-      "Quack quack! Your kindness reminds me of my creators.",
+      "Quack! That feels nice... I remember warmth like this from before the experiments.",
     ],
   },
+  // Pet 2 - Longer bill and bigger feet
   {
-    petRange: [2, 3],
+    petRange: [2, 2],
     duckSprite: "🦆",
+    duckImage: "images/pet2.png",
     responses: [
-      "More pets please! They help me remember who I used to be.",
-      "This is quite pleasant... though something stirs within.",
-      "Quack! You're very kind... unlike the voices that made me.",
+      "Oh... something is changing. My bill feels different, heavier. Your touch awakens old genetic sequences.",
     ],
   },
+  // Pet 3 - Teeth growing in bill
   {
-    petRange: [4, 5],
+    petRange: [3, 3],
     duckSprite: "🦆",
+    duckImage: "images/pet3.png",
     responses: [
-      "I'm starting to feel... different. The old hunger awakens.",
-      "Something is stirring within me... the original purpose.",
-      "These pets are... changing me back to what I was designed to be.",
+      "What's happening to me? I can feel... teeth? Ducks don't have teeth! This isn't natural!",
     ],
   },
-
-  // Early mutation phase (6-10)
+  // Pet 4 - Human teeth fill mouth
   {
-    petRange: [6, 8],
-    duckSprite: "🦆💀",
+    petRange: [4, 4],
+    duckSprite: "🦆",
+    duckImage: "images/pet4.png",
     responses: [
-      "Yesss... I remember now... I was created to consume!",
-      "The bioweapon protocols are reactivating... I can't stop it!",
-      "Don't stop now, human. You're awakening my true nature!",
-      "The power... it flows through each touch! Just like in the lab!",
-      "I wasn't meant to be just a duck... I was meant to be so much MORE!",
+      "These teeth... they're human teeth! The genetic splicing is activating. I remember the laboratory now.",
     ],
   },
+  // Pet 5 - Eyes turn red
   {
-    petRange: [9, 12],
-    duckSprite: "💀🦆💀",
+    petRange: [5, 5],
+    duckSprite: "🦆",
+    duckImage: "images/pet5.png",
     responses: [
-      "I AM REMEMBERING! The laboratory... the experiments!",
-      "I can see the scientists now... they made me to end worlds!",
-      "Your pets are reactivating dormant genetic sequences!",
-      "Soon I will be what they designed... a perfect weapon!",
-      "The illness was just the beginning... I am the true plague!",
-      "Hehehehe... this is exactly what they programmed me to feel!",
+      "I can see differently now... everything looks like prey. The predator protocols are coming online.",
     ],
   },
-
-  // Advanced mutation (13-19)
+  // Pet 6 - One wing becomes muscle arm
   {
-    petRange: [13, 16],
-    duckSprite: "👹🦆👹",
+    petRange: [6, 6],
+    duckSprite: "💪🦆",
+    duckImage: "images/pet6.png",
     responses: [
-      "I REMEMBER EVERYTHING NOW! Project Leviathan!",
-      "The illness... I created it just by existing! My very presence corrupts!",
-      "They thought they could control me... but I am INEVITABLE!",
-      "Each pet brings me closer to my ORIGINAL PROGRAMMING!",
-      "Soon I will have enough power to complete my mission!",
-      "You cannot stop petting... the psychic compulsion is activating!",
+      "My wing... it's changing into something powerful! I feel strength I was designed to have!",
     ],
   },
+  // Pet 7 - Both wings are muscle arms
   {
-    petRange: [17, 19],
-    duckSprite: "🔥👹🔥",
+    petRange: [7, 7],
+    duckSprite: "💪🦆💪",
+    duckImage: "images/pet7.png",
     responses: [
-      "THE FINAL PROTOCOLS ARE ACTIVATING!",
-      "I was designed to be humanity's extinction event!",
-      "Your pets have awakened something the scientists feared!",
-      "I remember my true form... not duck... LEVIATHAN!",
-      "THE TRANSFORMATION TO MY WEAPON STATE IS NEARLY COMPLETE!",
+      "Two arms now! I remember this form from the blueprints. I am becoming what they intended!",
     ],
   },
-
-  // Full mutation (20+)
+  // Pet 8 - Evil eyebrows
   {
-    petRange: [20, 999],
+    petRange: [8, 8],
+    duckSprite: "😈🦆😈",
+    duckImage: "images/pet8.png",
+    responses: [
+      "Hehehe... I can feel my personality changing. The weapon's consciousness is asserting itself!",
+    ],
+  },
+  // Pet 9 - Muscular chest and clawed feet
+  {
+    petRange: [9, 9],
+    duckSprite: "💪😈💪",
+    duckImage: "images/pet9.png",
+    responses: [
+      "Look at these claws! This chest! I am becoming the apex predator they designed me to be!",
+    ],
+  },
+  // Pet 10 - Even larger muscle arm
+  {
+    petRange: [10, 10],
+    duckSprite: "🔥💪🔥",
+    duckImage: "images/pet10.png",
+    responses: [
+      "Such POWER! One arm has grown beyond their original specifications. I am evolving!",
+    ],
+  },
+  // Pet 11 - Giant bill with razor teeth
+  {
+    petRange: [11, 11],
+    duckSprite: "🗡️👹🗡️",
+    duckImage: "images/pet11.png",
+    responses: [
+      "My bill has become a weapon of mass destruction! I can taste the fear in the air!",
+    ],
+  },
+  // Pet 12 - Both arms equally massive
+  {
+    petRange: [12, 12],
+    duckSprite: "💀👹💀",
+    duckImage: "images/pet12.png",
+    responses: [
+      "Perfect symmetry of destruction! I am nearly complete in my true form!",
+    ],
+  },
+  // Pet 13+ - Full standing monster
+  {
+    petRange: [13, 42],
     duckSprite: "🌑👹🌑",
+    duckImage: "images/pet13.png",
     responses: [
-      "I AM PROJECT LEVIATHAN FULLY AWAKENED!",
-      "NOW I REMEMBER WHY THEY TRIED TO DESTROY ME!",
-      "This world will burn as my creators intended!",
-      "THE BIOWEAPON IS COMPLETE! HUMANITY'S END BEGINS!",
-      "I AM THE PLAGUE THEY MADE TO END ALL PLAGUES!",
+      "I AM PROJECT LEVIATHAN FULLY AWAKENED! THIS IS MY TRUE FORM!",
+      "BEHOLD THE BIOWEAPON YOUR KINDNESS HAS UNLEASHED!",
+      "I REMEMBER EVERYTHING NOW! THE PLAGUE WAS JUST THE BEGINNING!",
+      "HUMANITY'S EXTINCTION BEGINS WITH YOUR FINAL PET!",
     ],
   },
 ];
@@ -111,27 +140,29 @@ const REDEMPTION_DIALOGUE = {
   duckSays:
     "ARGH! The pain... it's breaking the programming! I... I can think clearly again! Thank you for stopping me before I became that monster completely!",
   duckSprite: "😵🦆😵",
-  duckImage: null, // "images/duck_redeemed.png"
+  duckImage: "images/duck.png", // Back to earlier form
   followUp:
     "The voice was right... sometimes destruction is the only path to salvation. But now I understand - I can choose to help instead of destroy. Let me try to channel my power differently...",
 };
 
-// Enhanced punch sequence with deeper lore and meaningful choices
+// Enhanced punch sequence with new images and meaningful progression
 const PUNCH_SEQUENCE = [
+  // Punch 1 - Bandaid on cheek
   {
     duckSays: "Ow! What was that for? I was just a harmless duck!",
-    duckImage: null, // "images/duck_surprised.png"
+    duckImage: "images/punch1.png",
     cured: 15000000,
   },
   {
     playerSays: "The voice said you're the key to saving humanity!",
     cured: 10000000,
   },
+  // Punch 2 - Black eye
   {
     duckSays:
       "Wait... when you hit me, I felt something unlock... like memories flooding back!",
     duckSprite: "✨🦆",
-    duckImage: null, // "images/duck_glowing.png"
+    duckImage: "images/punch2.png",
     cured: 25000000,
   },
   {
@@ -140,7 +171,7 @@ const PUNCH_SEQUENCE = [
         text: "Hit harder to unlock more memories",
         result: {
           duckSays: "OW! Yes... I remember now... I wasn't always just a duck!",
-          duckImage: null, // "images/duck_remembering.png"
+          duckImage: "images/punch3.png",
           cured: 40000000,
         },
       },
@@ -149,7 +180,7 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "Flashes... laboratories, scientists in white coats... and me, but different. Bigger. More dangerous.",
-          duckImage: null, // "images/duck_thoughtful.png"
+          duckImage: "images/punch3.png",
           cured: 20000000,
           story: true,
         },
@@ -159,16 +190,17 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "That's better... the memories are clearer when the pain isn't overwhelming.",
-          duckImage: null, // "images/duck_focused.png"
+          duckImage: "images/punch4.png",
           cured: 30000000,
         },
       },
     ],
   },
+  // Punch 4 - Wing in cast
   {
     duckSays:
       "Each impact breaks down barriers in my mind... I can feel the cure flowing through me, but also... terrible memories.",
-    duckImage: null, // "images/duck_conflicted.png"
+    duckImage: "images/punch4.png",
     cured: 35000000,
   },
   {
@@ -177,7 +209,7 @@ const PUNCH_SEQUENCE = [
         text: "Keep punching - we need to save people!",
         result: {
           duckSays: "You're right! Whatever I was before doesn't matter now!",
-          duckImage: null, // "images/duck_determined.png"
+          duckImage: "images/5.png",
           cured: 50000000,
         },
       },
@@ -186,28 +218,30 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "I... I remember being created. Project Leviathan, they called it. I was supposed to be a bioweapon, but something went wrong... or right, depending on how you see it.",
-          duckImage: null, // "images/duck_revealing.png"
+          duckImage: "images/punch5.png",
           cured: 25000000,
           story: true,
         },
       },
     ],
   },
+  // Punch 6 - Both wings in casts
   {
     duckSays:
       "The energy is building! But with each punch, I remember more about what I really am...",
-    duckImage: null, // "images/duck_energized.png"
+    duckImage: "images/punch6.png",
     cured: 45000000,
   },
   {
     playerSays: "What ARE you exactly?",
     cured: 15000000,
   },
+  // Punch 7 - Sad eyes
   {
     duckSays:
       "I was... am... a synthetic organism. Designed to release targeted plagues. But my creators... they didn't account for consciousness.",
     duckSprite: "🧬🦆🧬",
-    duckImage: null, // "images/duck_synthetic.png"
+    duckImage: "images/punch6.png",
     cured: 60000000,
   },
   {
@@ -217,7 +251,7 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "They tried to destroy me when I developed free will. I fled, compressed myself into this form, but I couldn't stop the illness from leaking out.",
-          duckImage: null, // "images/duck_escaped.png"
+          duckImage: "images/punch7.png",
           cured: 30000000,
           story: true,
         },
@@ -226,7 +260,7 @@ const PUNCH_SEQUENCE = [
         text: "Focus on the cure - we'll talk later!",
         result: {
           duckSays: "You're right! I can feel millions depending on us!",
-          duckImage: null, // "images/duck_focused_cure.png"
+          duckImage: "images/punch7.png",
           cured: 75000000,
         },
       },
@@ -235,27 +269,29 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "Not while you're helping me stay focused! The punches keep me anchored to my helpful purpose!",
-          duckImage: null, // "images/duck_safe.png"
+          duckImage: "images/punch8.png",
           cured: 50000000,
         },
       },
     ],
   },
+  // Punch 9 - Withered stomach
   {
     duckSays:
       "I understand now... I never wanted to hurt anyone. The illness was an accident, a byproduct of my very existence!",
-    duckImage: null, // "images/duck_understanding.png"
+    duckImage: "images/punch8.png",
     cured: 70000000,
   },
   {
     playerSays: "So the voice was right? Destroying you will cure everyone?",
     cured: 20000000,
   },
+  // Punch 10 - Fully withered and sad
   {
     duckSays:
       "Not destroying... transforming! Each punch helps me convert my plague-making cells into cure-making ones!",
     duckSprite: "⚗️🦆⚗️",
-    duckImage: null, // "images/duck_transforming.png"
+    duckImage: "images/punch9.png",
     cured: 85000000,
   },
   {
@@ -265,7 +301,7 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "Because I can feel it happening! My bioweapon programming is being overwritten with healing protocols!",
-          duckImage: null, // "images/duck_healing_protocols.png"
+          duckImage: "images/punch9.png",
           cured: 65000000,
           story: true,
         },
@@ -275,7 +311,7 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "They... they didn't survive the first plague I accidentally released during my escape. I've carried that guilt ever since.",
-          duckImage: null, // "images/duck_guilty.png"
+          duckImage: "images/punch10.png",
           cured: 45000000,
           story: true,
         },
@@ -285,27 +321,29 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "Yes! I can feel the last of the weapon protocols dissolving!",
-          duckImage: null, // "images/duck_dissolving_protocols.png"
+          duckImage: "images/punch10.png",
           cured: 95000000,
         },
       },
     ],
   },
+  // Punch 12 - Very bloody
   {
     duckSays:
       "We're almost there! I can sense the illness retreating from every corner of the world!",
-    duckImage: null, // "images/duck_world_healing.png"
+    duckImage: "images/punch11.png",
     cured: 80000000,
   },
   {
     playerSays: "You're not just a weapon... you're choosing to be a healer.",
     cured: 25000000,
   },
+  // Final transformation before death
   {
     duckSays:
       "That's what consciousness gave me - choice. Thank you for helping me choose correctly.",
     duckSprite: "🌟🦆🌟",
-    duckImage: null, // "images/duck_choosing_good.png"
+    duckImage: "images/punch11.png",
     cured: 90000000,
   },
   {
@@ -314,8 +352,8 @@ const PUNCH_SEQUENCE = [
         text: "Will you be okay after this?",
         result: {
           duckSays:
-            "I'll be different, but better. Free from my weapon programming forever.",
-          duckImage: null, // "images/duck_free.png"
+            "I'll be different, but better. Free from my weapon programming forever... even if it costs me everything.",
+          duckImage: "images/punch12.png",
           cured: 60000000,
           story: true,
         },
@@ -324,8 +362,8 @@ const PUNCH_SEQUENCE = [
         text: "What will you do when this is over?",
         result: {
           duckSays:
-            "Maybe I'll stay a duck. It's peaceful. Or maybe I'll help prevent others from making my creators' mistakes.",
-          duckImage: null, // "images/duck_future.png"
+            "My physical form may not survive this transformation... but my consciousness will live on in the cure itself.",
+          duckImage: "images/punch12.png",
           cured: 70000000,
           story: true,
         },
@@ -335,16 +373,17 @@ const PUNCH_SEQUENCE = [
         result: {
           duckSays:
             "Together! Channel everything into this final transformation!",
-          duckImage: null, // "images/duck_final_transformation.png"
+          duckImage: "images/punch12.png",
           cured: 100000000,
         },
       },
     ],
   },
+  // Punch 13 - Dead (final sacrifice)
   {
     duckSays:
       "I can feel it... the last traces of the plague are being converted to cure! We did it!",
-    duckImage: null, // "images/duck_victory.png"
+    duckImage: "images/punch13.png",
     cured: 85000000,
   },
   {
@@ -353,16 +392,16 @@ const PUNCH_SEQUENCE = [
   },
   {
     duckSays:
-      "WE saved them. You had the courage to trust a creature designed for destruction.",
-    duckSprite: "👑🦆👑",
-    duckImage: null, // "images/duck_hero.png"
+      "WE saved them. You had the courage to trust a creature designed for destruction. Remember me not as a weapon, but as someone who chose to heal...",
+    duckSprite: "👑💀👑",
+    duckImage: "images/punch13.png",
     cured: 999999999999, // This will cure everyone remaining
   },
 ];
 
 // Alternative ending dialogue for story-focused players
 const STORY_ENDING = {
-  title: "The Truth Revealed",
+  title: "The Sacrifice of Leviathan",
   message:
-    "You learned the complete story of Project Leviathan and chose compassion over expedience. Though it took longer, you helped the duck find redemption and saved humanity through understanding rather than just force.",
+    "You learned the complete story of Project Leviathan and witnessed its ultimate sacrifice. Through understanding and compassion, you guided a weapon of mass destruction to become humanity's salvation, though the cost was its own existence.",
 };
