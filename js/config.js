@@ -200,5 +200,8 @@ const SYSTEM_MESSAGES = {
 
   gameStart: "The countdown has begun. Choose your approach carefully.",
 
-  pathLocked: "You've committed to this path. There's no turning back now.",
+  pathLocked:
+    "You've started down this path. You can still change your mind... for now.",
+
+  duckNoTrust: "The duck no longer trusts you. Violence is your only path now.",
 };

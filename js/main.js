@@ -173,7 +173,7 @@ class DuckPunchGame {
       this.gameState.petPath.active = true;
       this.elements.progressBars.style.display = "flex";
       this.elements.loveMeter.style.display = "block";
-      this.elements.punchBtn.style.display = "none";
+      // DON'T hide punch button - player can still abandon petting and punch
 
       eventManager.triggerPathLock("pet");
       dialogueManager.showSystemMessage(SYSTEM_MESSAGES.pathLocked);
@@ -229,13 +229,8 @@ class DuckPunchGame {
       this.gameState.petPath.currentStage++;
       this.gameState.petPath.currentPets = 0;
 
-      // Update duck appearance - make sure we don't go beyond array bounds
-      const spriteIndex = Math.min(
-        oldStage - 1,
-        PET_PATH_CONFIG.stageSprites.length - 1
-      );
-      const newSprite = PET_PATH_CONFIG.stageSprites[spriteIndex];
-      this.updateDuckAppearance(newSprite);
+      // Update duck appearance with images
+      this.updateDuckAppearanceForPetStage(oldStage);
 
       // Check for evil/mutation states
       if (
@@ -271,6 +266,18 @@ class DuckPunchGame {
         oldStage
       );
     }
+  }
+
+  // Update duck appearance for pet stages (with images)
+  updateDuckAppearanceForPetStage(stage) {
+    const imagePath = `images/pet${stage}.png`;
+    const fallbackSprite =
+      PET_PATH_CONFIG.stageSprites[
+        Math.min(stage - 1, PET_PATH_CONFIG.stageSprites.length - 1)
+      ];
+
+    // Try to use image first, fallback to emoji
+    this.updateDuckAppearance(fallbackSprite, imagePath);
   }
 
   // Update love meter
@@ -325,10 +332,13 @@ class DuckPunchGame {
       this.gameState.punchPath.active = true;
       this.elements.progressBars.style.display = "flex";
       this.elements.hpBar.style.display = "block";
+      // Hide pet button ONLY when punching - duck doesn't trust you anymore
       this.elements.petBtn.style.display = "none";
 
       eventManager.triggerPathLock("punch");
-      dialogueManager.showSystemMessage(SYSTEM_MESSAGES.pathLocked);
+      dialogueManager.showSystemMessage(
+        "The duck no longer trusts you. Violence is your only path now."
+      );
     }
 
     // Animate duck
@@ -391,13 +401,8 @@ class DuckPunchGame {
       this.gameState.punchPath.currentStage = newStage;
       this.gameState.punchPath.punchesInStage = 0;
 
-      // Update duck appearance - ensure we don't go beyond array bounds
-      const spriteIndex = Math.min(
-        newStage - 1,
-        PUNCH_PATH_CONFIG.stageSprites.length - 1
-      );
-      const newSprite = PUNCH_PATH_CONFIG.stageSprites[spriteIndex] || "💀";
-      this.updateDuckAppearance(newSprite);
+      // Update duck appearance with images for punch stages
+      this.updateDuckAppearanceForPunchStage(newStage);
 
       // Check for death
       if (this.gameState.punchPath.currentHp <= 0) {
@@ -408,6 +413,18 @@ class DuckPunchGame {
 
       eventManager.triggerStageChange("punch", newStage, oldStage);
     }
+  }
+
+  // Update duck appearance for punch stages (with images)
+  updateDuckAppearanceForPunchStage(stage) {
+    const imagePath = `images/punch${stage}.png`;
+    const fallbackSprite =
+      PUNCH_PATH_CONFIG.stageSprites[
+        Math.min(stage - 1, PUNCH_PATH_CONFIG.stageSprites.length - 1)
+      ] || "💀";
+
+    // Try to use image first, fallback to emoji
+    this.updateDuckAppearance(fallbackSprite, imagePath);
   }
 
   // Update HP bar
