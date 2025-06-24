@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duck Punch Game Engine</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="headline" id="headline">
+        🚨 BREAKING NEWS 2054 🚨<br />
+        Mysterious illness infects all 8 billion humans on Earth.<br />
+        First victims beginning to die after 72 hours.<br />
+        <small>Click to continue...</small>
+      </div>
+
+      <div class="speaker" id="speaker"></div>
+
+      <div class="duck-container" id="duckContainer">
+        <div class="duck" id="duck">🦆</div>
+      </div>
+
+      <div class="progress-container" id="progressContainer">
+        <div class="total-population">8,000,000,000 Humans</div>
+        <div class="progress-bar">
+          <div class="progress-death" id="progressDeath"></div>
+          <div class="progress-cured" id="progressCured"></div>
+        </div>
+        <div class="progress-text">
+          <span id="deathCount">Deaths: 423</span>
+          <span id="curedCount" style="display: none">Cured: 0</span>
+        </div>
+      </div>
+
+      <div class="action-buttons" id="actionButtons">
+        <button class="btn btn-pet" id="petBtn">Pet</button>
+        <button class="btn btn-punch" id="punchBtn">Punch</button>
+      </div>
+
+      <div class="dialogue" id="dialogue"></div>
+
+      <div class="end-screen" id="endScreen">
+        <h2 id="endTitle"></h2>
+        <p id="endMessage"></p>
+      </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
