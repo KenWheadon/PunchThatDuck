@@ -1,0 +1,137 @@
+/* Dialogue System Styles */
+
+.dialogue {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 15px 20px;
+  border-radius: 15px;
+  margin: 10px;
+  text-align: center;
+  max-width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+/* Duck Speech */
+.dialogue.duck-speak {
+  border: 3px solid #ffdd44;
+  background: rgba(255, 221, 68, 0.1);
+  left: 20px;
+  transform: translateY(-50%);
+  max-width: 300px;
+}
+
+.dialogue.duck-speak::before {
+  content: "🦆 ";
+  font-size: 16px;
+}
+
+/* Player Speech */
+.dialogue.player-speak {
+  border: 3px solid #4444ff;
+  background: rgba(68, 68, 255, 0.1);
+  right: 20px;
+  left: auto;
+  transform: translateY(-50%);
+  max-width: 300px;
+}
+
+.dialogue.player-speak::before {
+  content: "🧑 ";
+  font-size: 16px;
+}
+
+/* System/Narrator Speech */
+.dialogue.system-speak {
+  border: 3px solid #888;
+  background: rgba(136, 136, 136, 0.1);
+}
+
+.dialogue.system-speak::before {
+  content: "📢 ";
+  font-size: 16px;
+}
+
+/* Dialogue Variations by State */
+.dialogue.evil-duck {
+  border-color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+}
+
+.dialogue.evil-duck::before {
+  content: "👹 ";
+}
+
+.dialogue.dying-duck {
+  border-color: #666;
+  background: rgba(102, 102, 102, 0.1);
+  opacity: 0.8;
+}
+
+.dialogue.dying-duck::before {
+  content: "💀 ";
+}
+
+/* Choice Buttons */
+.choice-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.choice-btn {
+  padding: 10px 20px;
+  background: #666;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.choice-btn:hover {
+  background: #888;
+  transform: translateY(-1px);
+}
+
+.choice-btn:active {
+  transform: translateY(0);
+}
+
+/* Dialogue Text Effects */
+.dialogue-text {
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.dialogue-text.large {
+  font-size: 16px;
+}
+
+.dialogue-text.small {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Special Dialogue States */
+.dialogue.urgent {
+  animation: urgentPulse 1s infinite;
+}
+
+@keyframes urgentPulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 68, 68, 0.8);
+  }
+}

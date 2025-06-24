@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Duck Punch Game Engine</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Enhanced Duck Punch Game Engine</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/progress-bars.css" />
+    <link rel="stylesheet" href="css/dialogue.css" />
+    <link rel="stylesheet" href="css/animations.css" />
   </head>
   <body>
     <div class="game-container">
@@ -19,6 +22,19 @@
 
       <div class="duck-container" id="duckContainer">
         <div class="duck" id="duck">🦆</div>
+
+        <!-- Progress Bars -->
+        <div class="progress-bars" id="progressBars">
+          <div class="love-meter" id="loveMeter" style="display: none">
+            <div class="progress-label">Love Level</div>
+            <div class="love-fill" id="loveFill"></div>
+          </div>
+
+          <div class="hp-bar" id="hpBar" style="display: none">
+            <div class="progress-label">HP</div>
+            <div class="hp-fill" id="hpFill"></div>
+          </div>
+        </div>
       </div>
 
       <div class="progress-container" id="progressContainer">
@@ -46,7 +62,22 @@
       </div>
     </div>
 
-    <script src="config.js"></script>
-    <script src="main.js"></script>
+    <!-- Script loading order is important -->
+    <script src="js/config.js"></script>
+    <script src="js/pet-dialogue.js"></script>
+    <script src="js/punch-dialogue.js"></script>
+    <script src="js/dialogue-manager.js"></script>
+    <script src="js/event-manager.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Error handling -->
+    <script>
+      window.addEventListener("error", function (e) {
+        console.error("Game Error:", e.error);
+        // Fallback error display
+        document.body.innerHTML +=
+          '<div style="position:fixed;top:10px;left:10px;background:red;color:white;padding:10px;z-index:9999;">Game Error: Check console</div>';
+      });
+    </script>
   </body>
 </html>

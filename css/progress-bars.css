@@ -1,0 +1,79 @@
+/* Progress Bar Styles */
+
+.progress-bars {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Love Meter */
+.love-meter {
+  width: 200px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  position: relative;
+  border: 2px solid #ff69b4;
+  overflow: hidden;
+}
+
+.love-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff69b4, #ff1493);
+  width: 0%;
+  transition: width 0.3s ease;
+  border-radius: 8px;
+  position: relative;
+}
+
+.love-fill::before {
+  content: "💕";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+}
+
+/* HP Bar */
+.hp-bar {
+  width: 200px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  position: relative;
+  border: 2px solid #ff4444;
+  overflow: hidden;
+}
+
+.hp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4444, #cc0000);
+  width: 100%;
+  transition: width 0.3s ease;
+  border-radius: 8px;
+}
+
+/* Progress Labels */
+.progress-label {
+  font-size: 12px;
+  color: #ccc;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+/* Hearts Animation */
+.hearts {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff69b4;
+  font-size: 24px;
+  animation: float-up 1s ease-out forwards;
+}
