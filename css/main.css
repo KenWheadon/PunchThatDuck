@@ -28,7 +28,9 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+  /* FIXED: Add background image */
+  background-image: url("../images/bg.png"),
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     repeating-linear-gradient(
       90deg,
       transparent,
@@ -41,6 +43,8 @@ body {
       transparent 98px,
       rgba(68, 68, 68, 0.1) 100px
     );
+  background-size: cover, auto, auto, auto;
+  background-position: center, center, center, center;
 }
 
 /* Headline */
@@ -54,10 +58,18 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   animation: pulse 2s infinite;
+  /* FIXED: Add newspaper background image */
+  background-image: url("../images/news.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Keep red background as fallback */
+  background-color: #ff4444;
+  height: 100%;
+  width: 75%;
 }
 
 .headline:hover {
-  background: #ff6666;
   transform: scale(1.05);
 }
 
@@ -90,9 +102,9 @@ body {
 }
 
 .duck {
-  width: 150px;
-  height: 150px;
-  background: #ffdd44;
+  width: 175px;
+  height: 175px;
+  /* background: #ffdd44; */
   border-radius: 50%;
   position: relative;
   cursor: pointer;
@@ -101,6 +113,13 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 60px;
+  /* FIXED: Add default duck image */
+  background-image: url("../images/duck.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* Keep yellow background as fallback */
+  /* background-color: #ffdd44; */
 }
 
 .duck:hover {
@@ -112,17 +131,17 @@ body {
   box-shadow: 0 0 20px #ff0000;
 }
 
-/* Population Progress */
+/* Population Progress - FIXED */
 .progress-container {
   width: 90%;
   margin: 20px 0;
-  display: none;
+  /* display: none; */
 }
 
 .progress-bar {
   width: 100%;
   height: 30px;
-  background: #000;
+  background: #ff4444; /* FIXED: Red background (alive people) */
   border-radius: 15px;
   overflow: hidden;
   position: relative;
@@ -131,12 +150,13 @@ body {
 
 .progress-death {
   height: 100%;
-  background: #ff4444;
-  width: 100%;
+  background: #000; /* FIXED: Black bar for deaths */
+  width: 0%; /* FIXED: Starts at 0%, grows as people die */
   transition: width 0.3s ease;
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 2; /* Above the red background */
 }
 
 .progress-cured {
@@ -144,9 +164,10 @@ body {
   background: #4444ff;
   width: 0%;
   position: absolute;
-  right: 0;
   top: 0;
   transition: width 0.3s ease;
+  z-index: 3; /* Above everything */
+  /* FIXED: Calculate right position dynamically in JS */
 }
 
 .progress-text {

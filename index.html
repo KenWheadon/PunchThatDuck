@@ -11,14 +11,21 @@
   </head>
   <body>
     <div class="game-container">
-      <div class="headline" id="headline">
-        🚨 BREAKING NEWS 2054 🚨<br />
-        Mysterious illness infects all 8 billion humans on Earth.<br />
-        First victims beginning to die after 72 hours.<br />
-        <small>Click to continue...</small>
-      </div>
+      <div class="headline" id="headline"></div>
 
       <div class="speaker" id="speaker"></div>
+
+      <div class="progress-container" id="progressContainer">
+        <div class="total-population">8,000,000,000 Humans</div>
+        <div class="progress-bar">
+          <div class="progress-death" id="progressDeath"></div>
+          <div class="progress-cured" id="progressCured"></div>
+        </div>
+        <div class="progress-text">
+          <span id="deathCount">Deaths: 423</span>
+          <span id="curedCount" style="display: none">Cured: 0</span>
+        </div>
+      </div>
 
       <div class="duck-container" id="duckContainer">
         <div class="duck" id="duck">🦆</div>
@@ -34,18 +41,6 @@
             <div class="progress-label">HP</div>
             <div class="hp-fill" id="hpFill"></div>
           </div>
-        </div>
-      </div>
-
-      <div class="progress-container" id="progressContainer">
-        <div class="total-population">8,000,000,000 Humans</div>
-        <div class="progress-bar">
-          <div class="progress-death" id="progressDeath"></div>
-          <div class="progress-cured" id="progressCured"></div>
-        </div>
-        <div class="progress-text">
-          <span id="deathCount">Deaths: 423</span>
-          <span id="curedCount" style="display: none">Cured: 0</span>
         </div>
       </div>
 

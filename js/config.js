@@ -3,16 +3,13 @@ const GAME_CONFIG = {
   // Population and Death System
   totalPopulation: 8000000000,
   initialDeaths: 423,
-  deathRatePhase1: 1, // deaths per second for first 30 seconds
-  deathRatePhase1Duration: 30, // seconds
+  deathRatePhase1: 1, // 1 death per second for first 10 seconds
+  deathRatePhase1Duration: 10, // FIXED: Changed from 30 to 10 seconds
   totalGameTime: 480, // 8 minutes in seconds
 
   // Action System
   actionCooldown: 250, // 0.25 seconds between actions
   dialogueDisplayTime: 3000, // 3 seconds
-
-  // Idle Timer
-  idleTimeForCrabRangoon: 480, // 8 minutes for crab rangoon ending
 
   // Visual Effects
   heartThreshold: 5, // pets needed for hearts to appear
@@ -196,7 +193,7 @@ const ENDING_CONFIG = {
 // System Messages
 const SYSTEM_MESSAGES = {
   introMicrophone:
-    "Emergency Protocol 7-Alpha activated. We've located the source in this military blacksite - Project Leviathan, designation 'Duck'. Our scientists believe controlled trauma may reverse its bioweapon protocols. You have been selected for psychological compatibility. You must... punch that duck. Time is running out.",
+    "Emergency Protocol 7-Alpha activated.  You have been selected for psychological compatibility. You must... punch that duck. Time is running out.",
 
   gameStart: "The countdown has begun. Choose your approach carefully.",
 

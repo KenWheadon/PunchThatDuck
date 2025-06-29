@@ -28,6 +28,7 @@ class DuckPunchGame {
         maxHp: PUNCH_PATH_CONFIG.maxHp,
         punchesInStage: 0,
         totalPunches: 0,
+        stageMaxHp: PUNCH_PATH_CONFIG.maxHp, // Track max HP for current stage
       },
 
       // Special states
@@ -94,6 +95,8 @@ class DuckPunchGame {
   initializeGame() {
     this.updateProgressBar();
     eventManager.startIdleTracking();
+    // FIXED: Initialize duck with default image
+    this.elements.duck.textContent = ""; // Clear emoji since we're using background image
   }
 
   // Start the game
@@ -360,7 +363,7 @@ class DuckPunchGame {
     this.updateHpBar();
 
     // Process dialogue with manipulation options
-    const currentStage = this.getPunchStage();
+    const currentStage = this.gameState.punchPath.currentStage;
     const showManipulation =
       currentStage >= PUNCH_PATH_CONFIG.pleadingStartStage;
     dialogueManager.processPunchDialogue(
@@ -379,39 +382,46 @@ class DuckPunchGame {
     );
   }
 
-  // Get current punch stage based on HP
-  getPunchStage() {
-    for (let i = 0; i < PUNCH_PATH_CONFIG.stageHpThresholds.length; i++) {
-      if (
-        this.gameState.punchPath.currentHp >
-        PUNCH_PATH_CONFIG.stageHpThresholds[i]
-      ) {
-        return i + 1;
-      }
-    }
-    return PUNCH_PATH_CONFIG.stageHpThresholds.length + 1;
-  }
-
-  // Check punch stage progression
+  // Check punch stage progression - FIXED
   checkPunchStageProgression() {
-    const newStage = this.getPunchStage();
-
-    if (newStage !== this.gameState.punchPath.currentStage) {
+    // If HP reaches 0, move to next stage
+    if (this.gameState.punchPath.currentHp <= 0) {
       const oldStage = this.gameState.punchPath.currentStage;
-      this.gameState.punchPath.currentStage = newStage;
-      this.gameState.punchPath.punchesInStage = 0;
 
-      // Update duck appearance with images for punch stages
-      this.updateDuckAppearanceForPunchStage(newStage);
-
-      // Check for death
-      if (this.gameState.punchPath.currentHp <= 0) {
+      // Check if we've reached the final stage (death)
+      if (
+        this.gameState.punchPath.currentStage >=
+        PUNCH_PATH_CONFIG.stageHpThresholds.length + 1
+      ) {
         setTimeout(() => {
           eventManager.triggerGameEnd("violent-antihero");
         }, 2000);
+        return;
       }
 
-      eventManager.triggerStageChange("punch", newStage, oldStage);
+      // Advance to next stage
+      this.gameState.punchPath.currentStage++;
+      this.gameState.punchPath.punchesInStage = 0;
+
+      // Calculate new HP for this stage based on stage progression
+      // Each stage gets progressively less HP: 10, 8, 6, 4, 2, 1...
+      const baseHp = Math.max(
+        1,
+        12 - this.gameState.punchPath.currentStage * 2
+      );
+      this.gameState.punchPath.currentHp = baseHp;
+      this.gameState.punchPath.stageMaxHp = baseHp;
+
+      // Update duck appearance with images for punch stages
+      this.updateDuckAppearanceForPunchStage(
+        this.gameState.punchPath.currentStage
+      );
+
+      eventManager.triggerStageChange(
+        "punch",
+        this.gameState.punchPath.currentStage,
+        oldStage
+      );
     }
   }
 
@@ -427,12 +437,13 @@ class DuckPunchGame {
     this.updateDuckAppearance(fallbackSprite, imagePath);
   }
 
-  // Update HP bar
+  // Update HP bar - FIXED
   updateHpBar() {
     if (!this.gameState.punchPath.active) return;
 
     const progress =
-      (this.gameState.punchPath.currentHp / this.gameState.punchPath.maxHp) *
+      (this.gameState.punchPath.currentHp /
+        this.gameState.punchPath.stageMaxHp) *
       100;
 
     this.elements.hpFill.style.width = `${progress}%`;
@@ -462,23 +473,24 @@ class DuckPunchGame {
     this.elements.hpBar.style.display = "block";
   }
 
-  // Death timer system
+  // Death timer system - FIXED
   startDeathTimer() {
     this.gameState.gameStartTime = Date.now();
 
     this.gameState.deathInterval = setInterval(() => {
       if (this.gameState.phase !== "playing") return;
 
-      // Check for idle timeout
-      if (eventManager.checkIdleTimeout()) {
-        return; // Game will end via event
-      }
-
       const deathRate = this.calculateDeathRate();
       this.gameState.deaths = Math.round(this.gameState.deaths + deathRate);
 
       this.updateProgressBar();
       eventManager.triggerDeathUpdate(this.gameState.deaths);
+
+      // Check for idle timeout - FIXED: Trigger when everyone is dead
+      if (this.gameState.deaths >= GAME_CONFIG.totalPopulation) {
+        eventManager.triggerGameEnd("crab-rangoon");
+        return;
+      }
 
       // Check for game over conditions
       if (
@@ -500,13 +512,16 @@ class DuckPunchGame {
     }, 1000);
   }
 
+  // FIXED: New death rate calculation
   calculateDeathRate() {
     const elapsedTime = (Date.now() - this.gameState.gameStartTime) / 1000;
 
-    if (elapsedTime < GAME_CONFIG.deathRatePhase1Duration) {
-      return GAME_CONFIG.deathRatePhase1;
+    // First 10 seconds: 1 death per second
+    if (elapsedTime < 10) {
+      return 1;
     }
 
+    // After 10 seconds: Calculate rate to reach 8 billion by 8 minutes (480 seconds)
     const remainingTime = GAME_CONFIG.totalGameTime - elapsedTime;
     const remainingDeaths =
       GAME_CONFIG.totalPopulation -
@@ -515,7 +530,18 @@ class DuckPunchGame {
 
     if (remainingTime <= 0 || remainingDeaths <= 0) return 0;
 
-    return Math.max(1, remainingDeaths / remainingTime);
+    // Calculate exponential growth rate to reach total population
+    const deathsAfter10Seconds = GAME_CONFIG.totalPopulation - 10; // 10 deaths in first 10 seconds
+    const timeAfter10Seconds = GAME_CONFIG.totalGameTime - 10; // 470 seconds remaining
+
+    // Use exponential formula: deaths = initial * e^(rate * time)
+    const currentTimeAfter10 = elapsedTime - 10;
+    const exponentialRate = Math.log(deathsAfter10Seconds) / timeAfter10Seconds;
+
+    return Math.max(
+      1,
+      Math.exp(exponentialRate * currentTimeAfter10) * exponentialRate
+    );
   }
 
   // Smooth counter animation
@@ -536,18 +562,19 @@ class DuckPunchGame {
     );
   }
 
+  // FIXED: Progress bar visual logic
   updateProgressBar() {
     const deathPercentage =
       (this.gameState.displayedDeaths / GAME_CONFIG.totalPopulation) * 100;
     const curedPercentage =
       (this.gameState.cured / GAME_CONFIG.totalPopulation) * 100;
-    const alivePercentage = Math.max(
-      0,
-      100 - deathPercentage - curedPercentage
-    );
 
-    this.elements.progressDeath.style.width = `${alivePercentage}%`;
+    // FIXED: Death bar grows from left (black bar growing over red)
+    this.elements.progressDeath.style.width = `${deathPercentage}%`;
+
+    // FIXED: Cured bar grows from right, positioned correctly
     this.elements.progressCured.style.width = `${curedPercentage}%`;
+    this.elements.progressCured.style.right = "0px";
 
     // Animate death counter
     this.animateCounter(
