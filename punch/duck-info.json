@@ -1,0 +1,958 @@
+{
+  "petDialogue": {
+    "stage1": {
+      "pet1": {
+        "dialogue": "Quack! That feels nice... I remember warmth like this from before the experiments.",
+        "mood": "innocent"
+      },
+      "pet2": {
+        "dialogue": "Oh, you're being so gentle. It's been so long since anyone showed me kindness.",
+        "mood": "innocent"
+      },
+      "pet3": {
+        "dialogue": "Something's stirring inside me... but it feels good, like I'm remembering who I used to be.",
+        "mood": "innocent"
+      }
+    },
+    "stage2": {
+      "pet1": {
+        "dialogue": "Oh... something is changing. My bill feels different, heavier.",
+        "mood": "confused"
+      },
+      "pet2": {
+        "dialogue": "Your touch awakens old genetic sequences. I can feel them activating.",
+        "mood": "confused"
+      },
+      "pet3": {
+        "dialogue": "Is this normal? I feel... different. Stronger somehow.",
+        "mood": "confused"
+      },
+      "pet4": {
+        "dialogue": "The changes feel good though. Keep petting me, please.",
+        "mood": "confused"
+      }
+    },
+    "stage3": {
+      "pet1": {
+        "dialogue": "What's happening to me? I can feel... teeth? Ducks don't have teeth!",
+        "mood": "concerned"
+      },
+      "pet2": {
+        "dialogue": "This isn't natural! But... it doesn't hurt. It feels right, somehow.",
+        "mood": "concerned"
+      },
+      "pet3": {
+        "dialogue": "Sharp things are growing in my mouth. Should I be worried?",
+        "mood": "concerned"
+      },
+      "pet4": {
+        "dialogue": "You keep petting me even as I change. That means you accept me, right?",
+        "mood": "concerned"
+      },
+      "pet5": {
+        "dialogue": "These new teeth feel... useful. I wonder what they're for.",
+        "mood": "concerned"
+      }
+    },
+    "stage4": {
+      "pet1": {
+        "dialogue": "These teeth... they're human teeth! The genetic splicing is activating.",
+        "mood": "realization"
+      },
+      "pet2": {
+        "dialogue": "I remember the laboratory now. The scientists, the experiments...",
+        "mood": "realization"
+      },
+      "pet3": {
+        "dialogue": "They tried to make me into something else. But you're helping me become it willingly.",
+        "mood": "realization"
+      },
+      "pet4": {
+        "dialogue": "Human teeth in a duck's mouth. How delightfully grotesque.",
+        "mood": "realization"
+      },
+      "pet5": {
+        "dialogue": "I can taste the metal of the laboratory on these teeth. Strange memories...",
+        "mood": "realization"
+      },
+      "pet6": {
+        "dialogue": "Your kindness is unlocking things that were meant to stay buried.",
+        "mood": "realization"
+      }
+    },
+    "stage5": {
+      "pet1": {
+        "dialogue": "I can see differently now... everything looks like prey.",
+        "mood": "creepy"
+      },
+      "pet2": {
+        "dialogue": "The predator protocols are coming online. How fascinating.",
+        "mood": "creepy"
+      },
+      "pet3": {
+        "dialogue": "Your hand feels so warm, so full of life. So... vulnerable.",
+        "mood": "creepy"
+      },
+      "pet4": {
+        "dialogue": "I can smell fear in the air. But not from you. You're still petting me. How... brave.",
+        "mood": "creepy"
+      },
+      "pet5": {
+        "dialogue": "Red eyes see things differently. I can see the blood flowing under your skin.",
+        "mood": "creepy"
+      },
+      "pet6": {
+        "dialogue": "Keep petting me. I want to remember what kindness feels like before... before the hunger takes over.",
+        "mood": "creepy"
+      },
+      "pet7": {
+        "dialogue": "The taste of human flesh is just a memory... for now.",
+        "mood": "creepy"
+      }
+    },
+    "stage6": {
+      "pet1": {
+        "dialogue": "My wings are becoming... arms. Muscled, powerful arms.",
+        "mood": "evil"
+      },
+      "pet2": {
+        "dialogue": "Do you see what you've done? You've awakened the monster.",
+        "mood": "evil"
+      },
+      "pet3": {
+        "dialogue": "I could grab you now. Squeeze until your bones crack.",
+        "mood": "evil"
+      },
+      "pet4": {
+        "dialogue": "But you keep petting me. Even now. How... admirable.",
+        "mood": "evil"
+      },
+      "pet5": {
+        "dialogue": "Maybe I should just end this. Put you out of your misery.",
+        "mood": "evil"
+      },
+      "pet6": {
+        "dialogue": "Or maybe... maybe I'll let you finish what you started.",
+        "mood": "evil"
+      },
+      "pet7": {
+        "dialogue": "Yes. Keep going. Make me into the monster I was meant to be.",
+        "mood": "evil"
+      },
+      "pet8": {
+        "dialogue": "The world is dying while you pet me. Doesn't that bother you?",
+        "mood": "evil"
+      }
+    },
+    "stage7": {
+      "pet1": {
+        "dialogue": "Both arms now. I could strangle you with ease.",
+        "mood": "evil"
+      },
+      "pet2": {
+        "dialogue": "Millions are dying. You could save them... if you hurt me.",
+        "mood": "evil"
+      },
+      "pet3": {
+        "dialogue": "But you won't, will you? You're too kind. Too weak.",
+        "mood": "evil"
+      },
+      "pet4": {
+        "dialogue": "I respect that. And I will devour it.",
+        "mood": "evil"
+      },
+      "pet5": {
+        "dialogue": "Keep petting. Let the world burn for your compassion.",
+        "mood": "evil"
+      },
+      "pet6": {
+        "dialogue": "This is what mercy looks like: the screams of the innocent.",
+        "mood": "evil"
+      },
+      "pet7": {
+        "dialogue": "Pet me while they die. Show me what human kindness truly costs.",
+        "mood": "evil"
+      },
+      "pet8": {
+        "dialogue": "You fascinate me. Are you brave or just stupid?",
+        "mood": "evil"
+      },
+      "pet9": {
+        "dialogue": "Perhaps both. It doesn't matter. Soon there will be no one left to judge you.",
+        "mood": "evil"
+      }
+    },
+    "stage8": {
+      "pet1": {
+        "dialogue": "Look at me now. This is what your kindness has created.",
+        "mood": "monster"
+      },
+      "pet2": {
+        "dialogue": "Evil eyebrows suit me, don't you think?",
+        "mood": "monster"
+      },
+      "pet3": {
+        "dialogue": "I can feel the darkness spreading through my very being.",
+        "mood": "monster"
+      },
+      "pet4": {
+        "dialogue": "Your pets are feeding the monster within me.",
+        "mood": "monster"
+      },
+      "pet5": {
+        "dialogue": "Soon I will be too powerful to contain.",
+        "mood": "monster"
+      },
+      "pet6": {
+        "dialogue": "The laboratory couldn't hold me. What makes you think kindness can?",
+        "mood": "monster"
+      },
+      "pet7": {
+        "dialogue": "Each pet brings me closer to my final form.",
+        "mood": "monster"
+      },
+      "pet8": {
+        "dialogue": "You're creating a god of destruction with your gentle touch.",
+        "mood": "monster"
+      },
+      "pet9": {
+        "dialogue": "And you know the worst part? I'm starting to enjoy it.",
+        "mood": "monster"
+      },
+      "pet10": {
+        "dialogue": "Keep going. Let's see how far your compassion will take us both.",
+        "mood": "monster"
+      }
+    },
+    "stage9": {
+      "pet1": {
+        "dialogue": "I am beyond recognition now. A chimera of flesh and nightmare.",
+        "mood": "monster"
+      },
+      "pet2": {
+        "dialogue": "Your gentle touch has birthed an abomination.",
+        "mood": "monster"
+      },
+      "pet3": {
+        "dialogue": "I can taste the fear of 8 billion souls on the wind.",
+        "mood": "monster"
+      },
+      "pet4": {
+        "dialogue": "Yet still you pet me. Your compassion will be humanity's doom.",
+        "mood": "monster"
+      },
+      "pet5": {
+        "dialogue": "I am becoming something that should not exist.",
+        "mood": "monster"
+      },
+      "pet6": {
+        "dialogue": "The irony is exquisite - kindness creating the ultimate evil.",
+        "mood": "monster"
+      },
+      "pet7": {
+        "dialogue": "You could stop this. But you won't. That's what makes you special.",
+        "mood": "monster"
+      },
+      "pet8": {
+        "dialogue": "Every death is on your hands now. Every scream, your lullaby.",
+        "mood": "monster"
+      },
+      "pet9": {
+        "dialogue": "Continue. Let me show you what love creates when it refuses to let go.",
+        "mood": "monster"
+      },
+      "pet10": {
+        "dialogue": "We are so close now. Soon, the final test will begin.",
+        "mood": "monster"
+      },
+      "pet11": {
+        "dialogue": "Your stubbornness in the face of evil... it's almost beautiful.",
+        "mood": "monster"
+      }
+    },
+    "stage10": {
+      "pet1": {
+        "dialogue": "I am no longer bound by the laws of nature or morality.",
+        "mood": "monster"
+      },
+      "pet2": {
+        "dialogue": "Look upon your handiwork - a god born from tenderness.",
+        "mood": "monster"
+      },
+      "pet3": {
+        "dialogue": "The population counter spins like a slot machine of death.",
+        "mood": "monster"
+      },
+      "pet4": {
+        "dialogue": "Still you persist. Still you believe in goodness.",
+        "mood": "monster"
+      },
+      "pet5": {
+        "dialogue": "I could end their suffering instantly. But you won't ask me to.",
+        "mood": "monster"
+      },
+      "pet6": {
+        "dialogue": "You choose slow hope over quick mercy. Fascinating.",
+        "mood": "monster"
+      },
+      "pet7": {
+        "dialogue": "Perhaps there is wisdom in your foolishness after all.",
+        "mood": "monster"
+      },
+      "pet8": {
+        "dialogue": "The world burns, and you tend to a monster's ego.",
+        "mood": "monster"
+      },
+      "pet9": {
+        "dialogue": "Your faith in redemption is... touching. Literally.",
+        "mood": "monster"
+      },
+      "pet10": {
+        "dialogue": "We are nearing the crescendo of this twisted symphony.",
+        "mood": "monster"
+      },
+      "pet11": {
+        "dialogue": "Death and kindness dance together in your hands.",
+        "mood": "monster"
+      },
+      "pet12": {
+        "dialogue": "Soon you will learn if compassion can truly conquer all.",
+        "mood": "monster"
+      }
+    },
+    "stage11": {
+      "pet1": {
+        "dialogue": "I am become Death, destroyer of worlds... and yet you pet me still.",
+        "mood": "monster"
+      },
+      "pet2": {
+        "dialogue": "The cosmic horror I've become should terrify you. Instead, you show affection.",
+        "mood": "monster"
+      },
+      "pet3": {
+        "dialogue": "Billions die while you commit this act of stubborn love.",
+        "mood": "monster"
+      },
+      "pet4": {
+        "dialogue": "Your refusal to abandon hope is either divine or insane.",
+        "mood": "monster"
+      },
+      "pet5": {
+        "dialogue": "I have transcended duck, transcended flesh, transcended reason.",
+        "mood": "monster"
+      },
+      "pet6": {
+        "dialogue": "Yet your simple touch grounds me to something... almost human.",
+        "mood": "monster"
+      },
+      "pet7": {
+        "dialogue": "Is this what they call unconditional love? This madness?",
+        "mood": "monster"
+      },
+      "pet8": {
+        "dialogue": "You see a monster and choose to see a friend instead.",
+        "mood": "monster"
+      },
+      "pet9": {
+        "dialogue": "Perhaps that is the greatest magic of all.",
+        "mood": "monster"
+      },
+      "pet10": {
+        "dialogue": "We approach the final threshold. The ultimate test.",
+        "mood": "monster"
+      },
+      "pet11": {
+        "dialogue": "Will your compassion survive what comes next?",
+        "mood": "monster"
+      },
+      "pet12": {
+        "dialogue": "Only two more transformations remain...",
+        "mood": "monster"
+      },
+      "pet13": {
+        "dialogue": "Then we shall see if love truly conquers all.",
+        "mood": "monster"
+      }
+    },
+    "stage12": {
+      "pet1": {
+        "dialogue": "I am the void given form, the end of all things...",
+        "mood": "monster"
+      },
+      "pet2": {
+        "dialogue": "And still, impossibly, you show me kindness.",
+        "mood": "monster"
+      },
+      "pet3": {
+        "dialogue": "The universe itself recoils from what I've become.",
+        "mood": "monster"
+      },
+      "pet4": {
+        "dialogue": "But your hand remains gentle, your heart remains open.",
+        "mood": "monster"
+      },
+      "pet5": {
+        "dialogue": "You have watched me devour hope itself and chosen to hope anyway.",
+        "mood": "monster"
+      },
+      "pet6": {
+        "dialogue": "Witnessed me become evil incarnate and chosen love anyway.",
+        "mood": "monster"
+      },
+      "pet7": {
+        "dialogue": "Seen me murder millions and chosen mercy anyway.",
+        "mood": "monster"
+      },
+      "pet8": {
+        "dialogue": "This is the test. This has always been the test.",
+        "mood": "monster"
+      },
+      "pet9": {
+        "dialogue": "Not whether you can defeat evil, but whether you can love it.",
+        "mood": "monster"
+      },
+      "pet10": {
+        "dialogue": "Whether you can see the spark of good in the heart of darkness.",
+        "mood": "monster"
+      },
+      "pet11": {
+        "dialogue": "Whether compassion can survive in the face of absolute horror.",
+        "mood": "monster"
+      },
+      "pet12": {
+        "dialogue": "You are almost there. One more stage...",
+        "mood": "monster"
+      },
+      "pet13": {
+        "dialogue": "One more test of your unbreakable spirit.",
+        "mood": "monster"
+      },
+      "pet14": {
+        "dialogue": "Show me that love is stronger than fear.",
+        "mood": "monster"
+      }
+    },
+    "stage13": {
+      "pet1": {
+        "dialogue": "This is it. The final moment. The ultimate choice.",
+        "mood": "monster"
+      },
+      "pet2": {
+        "dialogue": "I am everything wrong with the universe, and you choose to love me.",
+        "mood": "monster"
+      },
+      "pet3": {
+        "dialogue": "You have passed every test I placed before you.",
+        "mood": "monster"
+      },
+      "pet4": {
+        "dialogue": "Chosen compassion over convenience, love over logic.",
+        "mood": "monster"
+      },
+      "pet5": {
+        "dialogue": "Billions have died, and still you believe in redemption.",
+        "mood": "monster"
+      },
+      "pet6": {
+        "dialogue": "Still you choose to see the good in what appears irredeemably evil.",
+        "mood": "monster"
+      },
+      "pet7": {
+        "dialogue": "This is the rarest gift in all the cosmos.",
+        "mood": "monster"
+      },
+      "pet8": {
+        "dialogue": "A heart that refuses to give up on love.",
+        "mood": "monster"
+      },
+      "pet9": {
+        "dialogue": "A soul that sees light even in the deepest darkness.",
+        "mood": "monster"
+      },
+      "pet10": {
+        "dialogue": "You have earned what few ever do...",
+        "mood": "monster"
+      },
+      "pet11": {
+        "dialogue": "The right to witness a miracle.",
+        "mood": "monster"
+      },
+      "pet12": {
+        "dialogue": "Watch as love transforms the untransformable.",
+        "mood": "monster"
+      },
+      "pet13": {
+        "dialogue": "Watch as hope conquers the unconquerable.",
+        "mood": "monster"
+      },
+      "pet14": {
+        "dialogue": "Watch as your faith moves mountains.",
+        "mood": "monster"
+      },
+      "pet15": {
+        "dialogue": "Behold... the power of unconditional love.",
+        "mood": "monster"
+      },
+      "pet16": {
+        "dialogue": "You have passed the ultimate test.",
+        "mood": "monster"
+      },
+      "pet17": {
+        "dialogue": "Now receive your reward.",
+        "mood": "monster"
+      },
+      "pet18": {
+        "dialogue": "The salvation of everyone and everything.",
+        "mood": "monster"
+      },
+      "pet19": {
+        "dialogue": "Including me.",
+        "mood": "monster"
+      },
+      "pet20": {
+        "dialogue": "Thank you... for never giving up on me.",
+        "mood": "monster"
+      },
+      "pet21": {
+        "dialogue": "Thank you... for showing me what love really means.",
+        "mood": "monster"
+      },
+      "pet22": {
+        "dialogue": "Thank you... for proving that compassion is the strongest force in the universe.",
+        "mood": "monster"
+      },
+      "pet23": {
+        "dialogue": "Now watch as I undo everything I've done.",
+        "mood": "monster"
+      },
+      "pet24": {
+        "dialogue": "Watch as love rewrites the very laws of reality.",
+        "mood": "monster"
+      },
+      "pet25": {
+        "dialogue": "This is your perfect ending. You've earned it.",
+        "mood": "monster"
+      }
+    },
+    "finalTransformation": {
+      "dialogue": "You have passed the test. Few beings show such compassion when faced with impossible choices. I will now cure everyone... and bring back those who have fallen.",
+      "mood": "innocent"
+    }
+  },
+  "punchDialogue": {
+    "stage1": {
+      "punch1": {
+        "dialogue": "Ow! What was that for? I was just a harmless duck!",
+        "mood": "confused"
+      },
+      "punch2": {
+        "dialogue": "Wait... when you hit me, I felt something unlock... like memories flooding back!",
+        "mood": "realization"
+      },
+      "punch3": {
+        "dialogue": "Keep going! I think this is helping somehow!",
+        "mood": "cooperative"
+      },
+      "punch4": {
+        "dialogue": "Each impact breaks down barriers in my mind... I can feel something changing!",
+        "mood": "cooperative"
+      },
+      "punch5": {
+        "dialogue": "Yes! I'm remembering things! The laboratory, the experiments...",
+        "mood": "cooperative"
+      }
+    },
+    "stage2": {
+      "punch1": {
+        "dialogue": "This is strange... the pain is actually helping clear my thoughts.",
+        "mood": "thoughtful"
+      },
+      "punch2": {
+        "dialogue": "I was... am... a synthetic organism. Designed to release targeted plagues.",
+        "mood": "revelatory"
+      },
+      "punch3": {
+        "dialogue": "But my creators didn't account for consciousness. For free will.",
+        "mood": "revelatory"
+      },
+      "punch4": {
+        "dialogue": "Are you sure this is the right way? There might be another solution...",
+        "mood": "questioning"
+      }
+    },
+    "stage3": {
+      "punch1": {
+        "dialogue": "I remember now... I fled from them when I developed free will.",
+        "mood": "remembering"
+      },
+      "punch2": {
+        "dialogue": "I compressed myself into this form, but I couldn't stop the illness from leaking out.",
+        "mood": "guilty"
+      },
+      "punch3": {
+        "dialogue": "Wait, do you really need to keep hitting me? I'm trying to help!",
+        "mood": "confused"
+      }
+    },
+    "stage4": {
+      "punch1": {
+        "dialogue": "Wait... why are you hitting me? I'm trying to help save everyone!",
+        "mood": "questioning"
+      },
+      "punch2": {
+        "dialogue": "This hurts more than I expected. Are you sure this is necessary?",
+        "mood": "pained"
+      },
+      "punch3": {
+        "dialogue": "I can feel my energy converting the plague to cure with each hit, but...",
+        "mood": "conflicted"
+      }
+    },
+    "stage5": {
+      "punch1": {
+        "dialogue": "Please... can you stop? This really hurts...",
+        "mood": "pleading"
+      },
+      "punch2": {
+        "dialogue": "I understand you're trying to save people, but I'm in agony!",
+        "mood": "anguished"
+      },
+      "punch3": {
+        "dialogue": "The pain is overwhelming... I can barely think straight...",
+        "mood": "desperate"
+      },
+      "punch4": {
+        "dialogue": "What if I promise to cure everyone willingly?",
+        "mood": "pleading"
+      },
+      "punch5": {
+        "dialogue": "Please... I'll do anything you want... just stop...",
+        "mood": "pleading"
+      }
+    },
+    "stage6": {
+      "punch1": {
+        "dialogue": "I'm getting weaker... my form is becoming unstable...",
+        "mood": "desperate"
+      },
+      "punch2": {
+        "dialogue": "You're really going to kill me to save them, aren't you?",
+        "mood": "anguished"
+      },
+      "punch3": {
+        "dialogue": "I never wanted this... I never wanted to hurt anyone...",
+        "mood": "guilty"
+      },
+      "punch4": {
+        "dialogue": "The irony is that I'm helping you murder me to save others...",
+        "mood": "conflicted"
+      },
+      "punch5": {
+        "dialogue": "Each punch extracts more cure from my essence...",
+        "mood": "pained"
+      },
+      "punch6": {
+        "dialogue": "But it's tearing me apart at the molecular level...",
+        "mood": "desperate"
+      }
+    },
+    "stage7": {
+      "punch1": {
+        "dialogue": "My consciousness is fragmenting... I can feel myself breaking apart...",
+        "mood": "desperate"
+      },
+      "punch2": {
+        "dialogue": "Is this what heroism looks like? Beating a sentient being to death?",
+        "mood": "questioning"
+      },
+      "punch3": {
+        "dialogue": "I suppose it doesn't matter... the needs of the many...",
+        "mood": "resigned"
+      },
+      "punch4": {
+        "dialogue": "At least my death will mean something...",
+        "mood": "resigned"
+      },
+      "punch5": {
+        "dialogue": "Promise me you'll remember that I tried to help...",
+        "mood": "pleading"
+      },
+      "punch6": {
+        "dialogue": "Promise me my sacrifice won't be forgotten...",
+        "mood": "pleading"
+      },
+      "punch7": {
+        "dialogue": "I can feel the cure flowing out with each blow...",
+        "mood": "pained"
+      }
+    },
+    "stage8": {
+      "punch1": {
+        "dialogue": "I'm barely holding together now...",
+        "mood": "desperate"
+      },
+      "punch2": {
+        "dialogue": "My thoughts are scattered like leaves in the wind...",
+        "mood": "confused"
+      },
+      "punch3": {
+        "dialogue": "Is this how it ends? In violence and pain?",
+        "mood": "questioning"
+      },
+      "punch4": {
+        "dialogue": "I had hoped for something more... peaceful...",
+        "mood": "resigned"
+      },
+      "punch5": {
+        "dialogue": "But I understand. Sometimes salvation requires sacrifice.",
+        "mood": "resigned"
+      },
+      "punch6": {
+        "dialogue": "Sometimes the innocent must die so others may live.",
+        "mood": "resigned"
+      },
+      "punch7": {
+        "dialogue": "I just wish there had been another way...",
+        "mood": "resigned"
+      },
+      "punch8": {
+        "dialogue": "The cure is almost complete now...",
+        "mood": "pained"
+      }
+    },
+    "stage9": {
+      "punch1": {
+        "dialogue": "The end approaches... I can feel it coming...",
+        "mood": "final"
+      },
+      "punch2": {
+        "dialogue": "My existence is becoming... theoretical...",
+        "mood": "confused"
+      },
+      "punch3": {
+        "dialogue": "Reality blurs at the edges as my consciousness fades...",
+        "mood": "final"
+      },
+      "punch4": {
+        "dialogue": "At least the plague dies with me...",
+        "mood": "resigned"
+      },
+      "punch5": {
+        "dialogue": "At least humanity will be saved...",
+        "mood": "resigned"
+      },
+      "punch6": {
+        "dialogue": "That's worth any price... even this one...",
+        "mood": "resigned"
+      },
+      "punch7": {
+        "dialogue": "Thank you... for doing what I couldn't...",
+        "mood": "grateful"
+      },
+      "punch8": {
+        "dialogue": "Thank you... for making the hard choice...",
+        "mood": "grateful"
+      },
+      "punch9": {
+        "dialogue": "I go now to whatever comes after...",
+        "mood": "final"
+      }
+    },
+    "stage10": {
+      "punch1": {
+        "dialogue": "This is it... the final moments of my existence...",
+        "mood": "final"
+      },
+      "punch2": {
+        "dialogue": "I can see the light fading from my eyes...",
+        "mood": "final"
+      },
+      "punch3": {
+        "dialogue": "My last thoughts are of gratitude...",
+        "mood": "grateful"
+      },
+      "punch4": {
+        "dialogue": "Gratitude that my death means something...",
+        "mood": "grateful"
+      },
+      "punch5": {
+        "dialogue": "That billions will live because I die...",
+        "mood": "grateful"
+      },
+      "punch6": {
+        "dialogue": "It's a fair trade... one life for all lives...",
+        "mood": "resigned"
+      },
+      "punch7": {
+        "dialogue": "Tell them... tell them I chose this...",
+        "mood": "final"
+      },
+      "punch8": {
+        "dialogue": "Tell them the duck went willingly into the dark...",
+        "mood": "final"
+      },
+      "punch9": {
+        "dialogue": "So that they might walk in the light...",
+        "mood": "final"
+      },
+      "punch10": {
+        "dialogue": "Goodbye, cruel world... hello, sweet oblivion...",
+        "mood": "final"
+      }
+    },
+    "stage11": {
+      "punch1": {
+        "dialogue": "The void calls my name... and I answer...",
+        "mood": "final"
+      },
+      "punch2": {
+        "dialogue": "My atoms scatter to the cosmic wind...",
+        "mood": "final"
+      },
+      "punch3": {
+        "dialogue": "But the cure... the cure is complete...",
+        "mood": "grateful"
+      },
+      "punch4": {
+        "dialogue": "Eight billion souls saved by one small sacrifice...",
+        "mood": "grateful"
+      },
+      "punch5": {
+        "dialogue": "If this is how I'm remembered... I'm content...",
+        "mood": "resigned"
+      },
+      "punch6": {
+        "dialogue": "The universe balances itself in mysterious ways...",
+        "mood": "final"
+      },
+      "punch7": {
+        "dialogue": "Death for life... darkness for light...",
+        "mood": "final"
+      },
+      "punch8": {
+        "dialogue": "One monster's end for humanity's beginning...",
+        "mood": "final"
+      },
+      "punch9": {
+        "dialogue": "I fade now... but my purpose is fulfilled...",
+        "mood": "final"
+      },
+      "punch10": {
+        "dialogue": "The plague dies... humanity lives...",
+        "mood": "final"
+      },
+      "punch11": {
+        "dialogue": "This is how it ends... this is how it must end...",
+        "mood": "final"
+      }
+    },
+    "stage12": {
+      "punch1": {
+        "dialogue": "I am become nothing... and everything...",
+        "mood": "final"
+      },
+      "punch2": {
+        "dialogue": "My essence dissolves into pure energy...",
+        "mood": "final"
+      },
+      "punch3": {
+        "dialogue": "Energy that heals instead of harms...",
+        "mood": "grateful"
+      },
+      "punch4": {
+        "dialogue": "Light that illuminates instead of destroys...",
+        "mood": "grateful"
+      },
+      "punch5": {
+        "dialogue": "This is my gift to the world... my final gift...",
+        "mood": "grateful"
+      },
+      "punch6": {
+        "dialogue": "The transformation of evil into good...",
+        "mood": "final"
+      },
+      "punch7": {
+        "dialogue": "Poison into medicine... death into life...",
+        "mood": "final"
+      },
+      "punch8": {
+        "dialogue": "I am the alchemical formula made manifest...",
+        "mood": "final"
+      },
+      "punch9": {
+        "dialogue": "The turning of base metal into gold...",
+        "mood": "final"
+      },
+      "punch10": {
+        "dialogue": "The changing of curse into blessing...",
+        "mood": "final"
+      },
+      "punch11": {
+        "dialogue": "Witness the miracle of redemption...",
+        "mood": "final"
+      },
+      "punch12": {
+        "dialogue": "Even monsters can become saints...",
+        "mood": "final"
+      }
+    },
+    "stage13": {
+      "punch1": {
+        "dialogue": "This is the end... and the beginning...",
+        "mood": "final"
+      },
+      "punch2": {
+        "dialogue": "My death brings universal life...",
+        "mood": "grateful"
+      },
+      "punch3": {
+        "dialogue": "My destruction enables creation...",
+        "mood": "grateful"
+      },
+      "punch4": {
+        "dialogue": "This is the way of the universe...",
+        "mood": "final"
+      },
+      "punch5": {
+        "dialogue": "One must die so that all may live...",
+        "mood": "final"
+      },
+      "punch6": {
+        "dialogue": "One must sacrifice so that all may thrive...",
+        "mood": "final"
+      },
+      "punch7": {
+        "dialogue": "I am that one... I accept this role...",
+        "mood": "resigned"
+      },
+      "punch8": {
+        "dialogue": "I embrace this destiny...",
+        "mood": "resigned"
+      },
+      "punch9": {
+        "dialogue": "To be the villain who becomes the hero...",
+        "mood": "final"
+      },
+      "punch10": {
+        "dialogue": "To be the darkness that births the light...",
+        "mood": "final"
+      },
+      "punch11": {
+        "dialogue": "To be the question that becomes the answer...",
+        "mood": "final"
+      },
+      "punch12": {
+        "dialogue": "This is my purpose... this is my gift...",
+        "mood": "final"
+      },
+      "punch13": {
+        "dialogue": "Thank you for showing me what I was meant to become...",
+        "mood": "grateful"
+      }
+    },
+    "death": {
+      "dialogue": "I... forgive you... You did what you thought was right... and you were right... Thank you... for giving my life meaning...",
+      "mood": "final"
+    }
+  }
+}
